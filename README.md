@@ -21,7 +21,7 @@ $ jana --help
 Usage:
   $ jana [options]
 
-  --hooks  remove npm lifecycle hooks
+  --hooks  show npm lifecycle hooks
   --list   only list scripts, don't prompt
   
   --help, -h

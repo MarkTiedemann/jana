@@ -15,7 +15,7 @@ const help = `
 Usage:
   $ jana [options]
 
-  --hooks  remove npm lifecycle hooks
+  --hooks  show npm lifecycle hooks
   --list   only list scripts, don't prompt
   
   --help, -h
@@ -50,7 +50,8 @@ if (!scripts) {
   exitNoScriptsFound()
 }
 
-// '--hooks' flag: remove npm lifecyle hooks
+// '--hooks' flag: show npm lifecyle hooks
+// remove them by default
 if (!flags.hooks) {
   Object.keys(scripts)
   .filter(key => key.startsWith('pre') || key.startsWith('post'))
