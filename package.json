@@ -1,0 +1,48 @@
+{
+  "name": "jana",
+  "version": "0.1.0",
+  "description": "NPM scripts with better UX.",
+  "author": "Mark Tiedemann <www.marktiedemann@gmail.com>",
+  "license": "WTFPL",
+  "bin": {
+    "jana": "bin.js"
+  },
+  "scripts": {
+    "lint": "standard --fix",
+    "pretest": "npm run lint",
+    "test": "ava test/**/test.js --verbose"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "inquirer": "^3.0.6",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "standard": "^10.0.2"
+  },
+  "main": "bin.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkTiedemann/jana.git"
+  },
+  "keywords": [
+    "npm",
+    "scripts",
+    "script",
+    "lana",
+    "jana",
+    "cli",
+    "app",
+    "exec",
+    "ux",
+    "ui"
+  ],
+  "bugs": {
+    "url": "https://github.com/MarkTiedemann/jana/issues"
+  },
+  "homepage": "https://github.com/MarkTiedemann/jana"
+}
