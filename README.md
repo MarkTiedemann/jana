@@ -1,11 +1,12 @@
 # jana
 
-**NPM scripts with better UX.**
+**Simple UI for NPM scripts.**
 
 Inspired by, but different than [`lana`](https://github.com/paprikka/lana-cli):
 
 - Does not clear the screen
-- Does not display `npm` lifecycle hooks (such as `pre*` and `post*`) by default (note: if you want to see them anyways, use the `--hooks` flag)
+- Does not display `npm` lifecycle hooks (such as `pre*` and `post*`) by default
+- Does not pull out descriptions of your commands from the `README.md`
 
 ## Installation
 
