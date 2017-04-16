@@ -39,37 +39,40 @@ try {
   process.exit(1)
 }
 
-const scripts = packageJson.scripts
-
 const exitNoScriptsFound = () => {
   console.error(chalk.yellow('[warn]') + ' no scripts found in package.json')
   process.exit(0)
 }
 
-if (!scripts) {
+if (!packageJson.scripts) {
   exitNoScriptsFound()
 }
+
+let scripts = Object.entries(packageJson.scripts)
+
+const isNoHook = ([script]) =>
+  !script.startsWith('pre') && !script.startsWith('post')
 
 // '--hooks' flag: show npm lifecyle hooks
 // remove them by default
 if (!flags.hooks) {
-  Object.keys(scripts)
-  .filter(key => key.startsWith('pre') || key.startsWith('post'))
-  .forEach(key => delete scripts[key])
+  scripts = scripts.filter(isNoHook)
 }
 
-if (Object.keys(scripts).length === 0) {
+if (scripts.length === 0) {
   exitNoScriptsFound()
 }
 
 const stringify = ([script, command]) =>
-  `${chalk.cyan(script)}: ${command}`
+  isNoHook([script])
+    ? `${chalk.cyan(script)}: ${command}`
+    // as a distinction, print hooks in grey
+    : chalk.grey(`${script}: ${command}`)
 
 // '--list' flag: only list scripts, but don't prompt
 // this flag is especially useful for testing
 if (flags.list) {
-  Object.entries(scripts).map(stringify)
-  .forEach(script => console.log('  ' + script))
+  scripts.map(stringify).forEach(script => console.log(script))
   process.exit(0)
 }
 
@@ -78,11 +81,10 @@ inquirer.prompt([{
   type: 'list',
   name: 'choice',
   message: 'Which script do you want to run?',
-  choices: Object.entries(scripts).map(stringify)
+  choices: scripts.map(stringify)
 }])
 .then(({ choice }) => {
-  const [script] = Object.entries(scripts)
-    .find(script => stringify(script) === choice)
+  const [script] = scripts.find(script => stringify(script) === choice)
 
   // workaround for 'spawn npm ENOENT' on windows
   const npmBin = process.platform === 'win32' ? 'npm.cmd' : 'npm'
