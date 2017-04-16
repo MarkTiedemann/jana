@@ -40,7 +40,7 @@ try {
 }
 
 const exitNoScriptsFound = () => {
-  console.error(chalk.yellow('[warn]') + ' no scripts found in package.json')
+  console.warn(chalk.yellow('[warn]') + ' no scripts found in package.json')
   process.exit(0)
 }
 
