@@ -8,6 +8,8 @@ Inspired by, but different than [`lana`](https://github.com/paprikka/lana-cli):
 - Does not display `npm` lifecycle hooks (such as `pre*` and `post*`) by default
 - Does not pull out descriptions of your commands from the `README.md`
 
+![](https://raw.githubusercontent.com/MarkTiedemann/jana/master/example.gif)
+
 ## Installation
 
 ```
