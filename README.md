@@ -4,7 +4,7 @@
 
 Inspired by, but different than [`lana`](https://github.com/paprikka/lana-cli):
 
-- Does not clear the screen
+- Does not clear the screen by default
 - Does not display `npm` lifecycle hooks (such as `pre*` and `post*`) by default
 - Does not pull out descriptions of your commands from the `README.md`
 
@@ -24,6 +24,7 @@ $ jana --help
 Usage:
   $ jana [options]
 
+  --clear  clear the screen
   --hooks  show npm lifecycle hooks
   --list   only list scripts, don't prompt
   

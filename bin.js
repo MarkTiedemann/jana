@@ -2,6 +2,7 @@
 
 const path = require('path')
 const { spawn } = require('child_process')
+const readline = require('readline')
 const minimist = require('minimist')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
@@ -16,6 +17,7 @@ const help = `
 Usage:
   $ jana [options]
 
+  --clear  clear the screen
   --hooks  show npm lifecycle hooks
   --list   only list scripts, don't prompt
   
@@ -31,6 +33,14 @@ if (flags.help) {
 if (flags.version) {
   console.log(pkg.version)
   process.exit(0)
+}
+
+// '--clear' flag: clears the screen
+// this is disabled by default and in non-TTY
+if (flags.clear && process.stdout.isTTY) {
+  // set cursor to 0:0, then clear screen to cursor
+  readline.cursorTo(process.stdout, 0, 0)
+  readline.clearScreenDown(process.stdout)
 }
 
 updateNotifier({ pkg }).notify()
