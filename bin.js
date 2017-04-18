@@ -5,7 +5,8 @@ const { spawn } = require('child_process')
 const minimist = require('minimist')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const { version } = require('./package.json')
+const updateNotifier = require('update-notifier')
+const pkg = require('./package.json')
 
 const flags = minimist(process.argv.slice(2), {
   alias: { help: 'h', version: 'v' }
@@ -28,9 +29,11 @@ if (flags.help) {
 }
 
 if (flags.version) {
-  console.log(version)
+  console.log(pkg.version)
   process.exit(0)
 }
+
+updateNotifier({ pkg }).notify()
 
 try {
   var packageJson = require(path.join(process.cwd(), 'package.json'))
