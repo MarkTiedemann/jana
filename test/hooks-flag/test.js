@@ -3,7 +3,7 @@ const test = require('ava').cb
 const { bin, trimLines } = require('../helpers')
 
 test('test with flag', assert => {
-  exec(`node ${bin} --list --hooks`, { cwd: __dirname }, (err, stdout, stderr) => {
+  exec(`node ${bin} --list --hooks --no-update-notifier`, { cwd: __dirname }, (err, stdout, stderr) => {
     assert.falsy(err)
     const [prea, a, posta] = trimLines(stdout)
     assert.is(prea, 'prea: 0')
@@ -14,7 +14,7 @@ test('test with flag', assert => {
 })
 
 test('test without flag', assert => {
-  exec(`node ${bin} --list`, { cwd: __dirname }, (err, stdout, stderr) => {
+  exec(`node ${bin} --list --no-update-notifier`, { cwd: __dirname }, (err, stdout, stderr) => {
     assert.falsy(err)
     const [a] = trimLines(stdout)
     assert.is(a, 'a: 1')

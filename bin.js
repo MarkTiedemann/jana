@@ -2,9 +2,9 @@
 
 const path = require('path')
 const { spawn } = require('child_process')
-const readline = require('readline')
 const minimist = require('minimist')
 const chalk = require('chalk')
+const clear = require('cross-clear')
 const inquirer = require('inquirer')
 const updateNotifier = require('update-notifier')
 const pkg = require('./package.json')
@@ -36,11 +36,9 @@ if (flags.version) {
 }
 
 // '--clear' flag: clears the screen
-// this is disabled by default and in non-TTY
-if (flags.clear && process.stdout.isTTY) {
-  // set cursor to 0:0, then clear screen to cursor
-  readline.cursorTo(process.stdout, 0, 0)
-  readline.clearScreenDown(process.stdout)
+// this is disabled by default
+if (flags.clear) {
+  clear()
 }
 
 updateNotifier({ pkg }).notify()
